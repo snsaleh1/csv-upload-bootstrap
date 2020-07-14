@@ -6,9 +6,13 @@ import csv
 
 app = Flask(__name__)
 
-@app.route('/')
+@app.route('/', methods=['GET', 'POST'])
 def root():
-    return render_template('home.html')
+    if request.method == 'GET':
+        return render_template('home.html')
+    elif request.method=='POST':
+        user_csv = request.form.get('user_csv')
+        print(user_csv)
 
 if __name__ =='__main__':
     app.run(debug=True)
